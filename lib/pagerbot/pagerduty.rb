@@ -51,7 +51,7 @@ module PagerBot
         json_response
       rescue Exception => e
         params = opts[:params] ? "?#{opts[:params].inspect}" : ""
-        logger.error("PagerDuty GET failed", {url: url, options: options}, e)
+        logger.error("PagerDuty GET failed", {url: url, options: opts}, e)
         raise RuntimeError.new("Problem talking to PagerDuty: #{e.message}\n" +
           "Request was GET #{url}#{params}")
       end
@@ -65,7 +65,7 @@ module PagerBot
         answer
       rescue Exception => e
         params = opts[:params] ? "?#{opts[:params].inspect}" : ""
-        logger.error("PagerDuty POST failed", {url: url, payload: payload, options: options}, e)
+        logger.error("PagerDuty POST failed", {url: url, payload: payload, options: opts}, e)
         raise RuntimeError.new("Problem talking to PagerDuty: #{e.message}\n"+
           "Request was POST #{url}#{params} / #{payload.inspect}")
       end
