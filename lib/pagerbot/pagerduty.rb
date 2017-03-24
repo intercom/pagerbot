@@ -62,7 +62,7 @@ module PagerBot
         resp = @resource[url].post(payload, opts)
         json_response = JSON.parse(resp, :symbolize_names => true)
         logger.debug("PagerDuty POST", url: url, payload: payload, options: opts, response: json_response)
-        answer
+        json_response
       rescue Exception => e
         params = opts[:params] ? "?#{opts[:params].inspect}" : ""
         logger.error("PagerDuty POST failed", {url: url, payload: payload, options: opts}, e)
